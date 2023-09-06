@@ -167,11 +167,18 @@ app.get("/me",auth,(req,res)=>{
     });
 })
 
-app.get("/submissions",(req, res)=> {
+app.get("/submissions/:problemId",auth,(req, res)=> {
+    const problemId=req.params.problemId;
+    const submissions=SUBMISSION.filter((x)=>
+    x.problemId===problemId && x.userId===req.userId
+    );
+    res.json({
+        submissions,
+    });
 
 })
-app.post("/submissions/:problemId",auth,(req, res)=> {
-     const id =req.params.id;
+app.post("/submissions",auth,(req, res)=> {
+
 
 })
 
