@@ -88,7 +88,7 @@ const PROBLEMS =[
 
 const SUBMISSION=[];
 
-app.get('/', function(req, res) {
+app.get('/', (req,res)=> {
     res.json({
         msg:"Hello World"
     })
@@ -138,7 +138,7 @@ app.post('/login', (req, res)=> {
     );
     return res.json({token});
 })
-app.get('/problems',function (req,res){
+app.get('/problems', (req,res)=>{
     const filteredProblems =PROBLEMS.map((x)=>({
         problemId:x.problemId,
         title:x.title,
@@ -177,7 +177,33 @@ app.get("/submissions/:problemId",auth,(req, res)=> {
     });
 
 })
-app.post("/submissions",auth,(req, res)=> {
+app.post("/submission",auth,(req, res)=> {
+    const isCorrect=Math.random()<0.5;
+    const problemId=req.body.problemId;
+    const submission=req.body.submission;
+    if(isCorrect){
+        SUBMISSION.push({
+            submission,
+            problemId,
+            userId:req.userId,
+            status:"AC"
+        });
+        return res.json({
+            status:"AC"
+        })
+    }
+    else{
+        SUBMISSION.push({
+            submission,
+            problemId,
+            userId:req.userId,
+            status:"WA"
+        })
+        return res.json({
+            status:"WA"
+        })
+    }
+
 
 
 })
