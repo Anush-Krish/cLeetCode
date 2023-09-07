@@ -1,11 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Import Router and Routes
-import HomePage from './components/HomePage.jsx';
-import SignUp from './components/SignUp.jsx';
-import Problems from "./components/Problems.jsx";
-import SignIn from "./components/SignIn.jsx";
+import HomePage from './components/HomePage/HomePage.jsx';
+import SignUp from './components/SignUp/SignUp.jsx';
+import Problems from "./components/AllProblems/Problems.jsx";
+import LogIn from "./components/Login/LogIn.jsx";
 
-// import QuestionPage from "./components/QuestionPage.jsx"
 
 const routes = [
     {
@@ -21,8 +20,8 @@ const routes = [
         component: Problems,
     },
     {
-        path:'/signin',
-        component:SignIn,
+        path:'/login',
+        component:LogIn,
     },
 
     // {

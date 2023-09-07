@@ -1,4 +1,4 @@
-function SignIn(){
+function LogIn(){
     return(
         <div>
         <input type="text" placeholder="email"/>
@@ -7,4 +7,4 @@ function SignIn(){
         </div>
     )
 }
-export default SignIn;
+export default LogIn;

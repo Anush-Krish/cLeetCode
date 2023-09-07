@@ -117,7 +117,7 @@ app.post('/signup',(req, res)=> {
     });
 });
 
-app.post('/signin', (req, res)=> {
+app.post('/login', (req, res)=> {
 
 
     const email=req.body.email;
@@ -204,12 +204,7 @@ app.post("/submission",auth,(req, res)=> {
             status:"WA"
         })
     }
-
-
-
 })
-
-
 
 app.listen(port, ()=> {
     console.log(`Example app listening on port ${port}`)
