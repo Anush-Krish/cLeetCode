@@ -5,6 +5,18 @@ const port = 3000
 app.use(express.json());
 let user_id_c=0;
 var jwt = require("jsonwebtoken");
+
+
+
+
+
+const bodyParser = require("body-parser");
+let jsonParser = bodyParser.json();
+let urlencodedParser = bodyParser.urlencoded({ extended: false });
+const cors = require("cors");
+app.use(cors());
+app.use(jsonParser);
+
 const JWT_SECRET = "secret";
 const USERS=[]
 const PROBLEMS =[
@@ -151,7 +163,7 @@ app.get('/problems', (req,res)=>{
     })
 })
 
-app.get('/problems/:id',(req,res) =>{
+app.get('/problem/:id',(req,res) =>{
     const id = req.params.id;
     const problem= PROBLEMS.find((x)=>
     x.problemId===id);
@@ -207,5 +219,5 @@ app.post("/submission",auth,(req, res)=> {
 })
 
 app.listen(port, ()=> {
-    console.log(`Example app listening on port ${port}`)
+    console.log(`cLeetCode app listening on port ${port}`)
 })

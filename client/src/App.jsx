@@ -1,50 +1,31 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Import Router and Routes
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import HomePage from './components/HomePage/HomePage.jsx';
 import SignUp from './components/SignUp/SignUp.jsx';
-import Problems from "./components/AllProblems/Problems.jsx";
+
 import LogIn from "./components/Login/LogIn.jsx";
+import AllProblems from "./components/AllProblems/AllProblems.jsx";
+
+import ProblemPage from"./components/ProblemPage/ProblemPage.jsx"
 
 
-const routes = [
-    {
-        path: '/',
-        component: HomePage,
-    },
-    {
-        path: '/signup',
-        component: SignUp,
-    },
-    {
-      path: '/problems',
-        component: Problems,
-    },
-    {
-        path:'/login',
-        component:LogIn,
-    },
-
-    // {
-    //     path:'/questionpage',
-    //     component:QuestionPage
-    // }
-];
 
 function App() {
     return (
-        <Router>
+        <BrowserRouter>
 
                 <Routes>
-                    {routes.map((route, index) => (
-                        <Route
-                            key={index}
-                            path={route.path}
-                            element={<route.component />}
-                        />
-                    ))}
+                    <Route path="/" element={<HomePage/>}/>
+                    <Route path="/signup" element={<SignUp/>}/>
+                    <Route path="/login" element={<LogIn/>}/>
+                    <Route path="/problemset/all/" element={<AllProblems />}/>
+                    <Route path="/problem/:pid/" element={<ProblemPage/>}/>
+
+                    {/*<Route path="/LogIn" element={<LogIn/>}/>*/}
+
                 </Routes>
 
-        </Router>
+        </BrowserRouter>
     );
 }
 

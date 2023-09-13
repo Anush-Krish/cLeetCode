@@ -1,5 +1,5 @@
 const JWT_SECRET="secret";
-var jwt=require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 module.exports= {
     auth:(req,res,next)=>{
