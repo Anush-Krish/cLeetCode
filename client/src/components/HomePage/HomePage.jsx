@@ -1,33 +1,52 @@
 
 import {Link} from "react-router-dom";
+import '@material/web/button/filled-button.js';
+import '@material/web/button/outlined-button.js';
+import '@material/web/button/filled-tonal-button.js';
+import '@material/web/divider/divider.js';
+
 const HomePage=()=>{
     return (
-        <div>
-        <div>
-            <Link to="/signin">
-                <button> Sign In</button>
+        <div align="center">
+        <div align="center">
+
+
+            <Link to="/login">
+                <md-filled-button> Sign In</md-filled-button>
             </Link>
 
             <Link to="/signup">
-                <button>Sign Up</button>
+                <md-filled-button>Sign Up</md-filled-button>
             </Link>
 
-            <Link to="/problems">
-                <button>Problems</button>
+
+
+            <Link to="/problemset/all/">
+                <md-outlined-button>Problems</md-outlined-button>
             </Link>
-            <br/>
+
+
 
         </div>
         <div>
-            <br/><br/><br/>
-            <body>
-            <h1 style={{color: "green"}}>Blogs</h1>
-            <br/><br/><br/><br/><br/><br/>
-            Why use C++.<br/>C++ is very fast.<br/><br/>
-            Why use C++.<br/>C++ is very fast.<br/>
 
+            <body>
+            <p>
+            <h1 style={{color: "green"}}>Blogs</h1>
+            <p>
+                <p>
+                    <md-divider role="separator"></md-divider>
+                    Why use C++.<br/>C++ is very fast.
+
+                    <md-divider role="separator"></md-divider>
+                </p>
+                <md-divider role="separator"></md-divider>
+            Why use C++.<br/>C++ is very fast.
+            <md-divider role="separator"></md-divider>
+            </p>
+            </p>
             </body>
-            <br/><br/>
+
         </div>
     </div>
     )}

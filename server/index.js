@@ -6,10 +6,6 @@ app.use(express.json());
 let user_id_c=0;
 var jwt = require("jsonwebtoken");
 
-
-
-
-
 const bodyParser = require("body-parser");
 let jsonParser = bodyParser.json();
 let urlencodedParser = bodyParser.urlencoded({ extended: false });
@@ -82,7 +78,7 @@ const PROBLEMS =[
         problemId: "7",
         title: "202. Happy Number",
         difficulty: "Easy",
-        acceptance: "54.9%",
+        acceptance: "54%",
         description: "Write an algorithm to determine if a number n is happy.",
         exampleIn: "n = 19",
         exampleOut: "true",
@@ -163,14 +159,14 @@ app.get('/problems', (req,res)=>{
     })
 })
 
-app.get('/problem/:id',(req,res) =>{
+app.get('/problems/:id',(req,res) =>{
     const id = req.params.id;
-    const problem= PROBLEMS.find((x)=>
+    const problems= PROBLEMS.find((x)=>
     x.problemId===id);
-    if(!problem){
+    if(!problems){
         return res.status(411).json({});
     }
-    res.json({problem,})
+    res.json({problems,})
 })
 app.get("/me",auth,(req,res)=>{
     const user=USERS.find((x)=>x.id===req.userId)

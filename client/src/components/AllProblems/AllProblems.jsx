@@ -1,40 +1,49 @@
 import {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
-
+import {json, Link} from "react-router-dom";
+import err from "jsonwebtoken/lib/JsonWebTokenError.js";
+import problemPage from "../ProblemPage/ProblemPage.jsx";
+import './AllProblems.css'
 const AllProblems=()=>{
     const [problems,setProblems]=useState([]);
-    const init=async()=>{
-        const response=await fetch("http://localhost:3000/problems",{
-            method:"GET"
+    useEffect(()=>{
+        fetch("http://localhost:3000/problems")
+            .then((response) => response.json())
+            .then((actualProblem)=>{
+               // console.log(actualProblem);
+                setProblems(actualProblem.problems);
+                //console.log(problems)
+            })
+            .catch((err)=>{
+                   console.log(err.message)
         });
-        const json=await response.json();
-        setProblems(json.problems);
 
-        useEffect(()=>{
-            init()
-        },[]);
-    }
+    },[]);
+
+
     return(
-        <div id="allproblems">
-            <table>
-                <tbody>
-                   <tr>
-                       <th>Title</th>
-                       <th>Difficulty</th>
-                       <th>Acceptance</th>
-                   </tr>
-                   {problems.map((prob)=>(
-                   <tr>
-                       <Link to={`/problems/:${prob.problemId}`}>
-                       <td>prob.title</td>
+       <div id="allproblems">
+           <table>
+               <tbody>
+               <tr>
+                   <th>Title</th>
+                   <th>Difficulty</th>
+                   <th>Acceptance</th>
+               </tr>
+               {problems.map((prob)=>(
+
+                   <tr key="problemId">
+
+                       <Link to='/problem/${prob.problemId}'>
+                       <td>{prob.title}</td>
                        </Link>
-                       <td className={`${prob.acceptance}`}>prob.acceptance</td>
-                       <td className={`${prob.difficulty}`}>prob.difficulty</td>
+                       <td >{prob.difficulty}</td>
+                       <td >{prob.acceptance}</td>
                    </tr>
-                   ))}
-                </tbody>
-            </table>
-        </div>
-    )
+               ))}
+               </tbody>
+           </table>
+       </div>
+   );
+
 }
 export default AllProblems;
